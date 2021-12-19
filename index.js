@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = new mongoose.model("User", userSchema);
-
+// Routes
 app.post("/signup", (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if (user) {
@@ -49,7 +49,7 @@ app.post("/signup", (req, res) => {
   });
 });
 
-// Routes
+
 app.post("/signin", (req, res) => {
   const { email, password } = req.body;
   User.findOne({ email: email }, (err, user) => {
@@ -68,6 +68,10 @@ app.post("/signin", (req, res) => {
     }
   });
 });
+
+app.get("/",(req,res)=>{
+  res.send("Backend Working")
+})
 
 app.listen(port, () => {
   console.log(`app listening at ${port}`);
